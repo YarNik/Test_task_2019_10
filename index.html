@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	
+	<script src="script.js"></script>
+	<title>Registry system</title>
+  </head>
+
+  <body ng-app="registry-app" ng-controller="data-controller">
+  <div class="header">
+	<div class="layer_hed1">
+		<img src="https://smida-dev.test.idoc.com.ua/assets/images/55563eac.svr.png" alt="emblem"
+		width="50" height="50">
+	</div>
+		<div class="layer_hed2" style="allign: center">
+			<div style="text-align: center">СИСТЕМА ВЕДЕННЯ</div>
+			<div style="font-size: 14pt; text-align: center">РЕЄСТРІВ</div>
+		</div>
+  </div>
+	<div class="my_container">
+	
+		<div class="layer1">
+			<i style="color: #299cc2">< До результатів пошуку</i>
+			<div>
+				<i style="color: gray">Код за ЄДРПОУ {{data.oCommonInfoBot.code}}</i>
+			</div>
+		</div>
+		  <div class="layer2" align="right">
+			<span class="layer2_1">Пошук за ЄДРПОУ та назвою</span>
+			<span class="layer2_2"> {{today | date:"dd-MM-yyyy"}} <i class="fa fa-calendar" ></i></span>
+			<span class="layer2_2">Профіль</span>
+		  </div>
+   					
+		<table class="table">
+		  <thead>
+			<tr>
+			  <td class="without"></td>
+			  <td class="without">Відомості з ЄДР</td>
+			  <td class="without">Відомості з СВР</td>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td class="without">Назва</td>
+			  <th class="without">{{data.oCommonInfoBot.full_name}}</th>
+			  <th class="without">{{data.oCommonInfo.sNameFull}}</th>
+			</tr>
+			<tr>
+			  <td class="without">Керівник юр.особи</td>
+			  <td class="without">{{data.oCommonInfoBot.ceo_name}}</td>
+			  <td class="without">{{data.oCommonInfo.oCEO.sCeoName}}</td>
+			</tr>
+			<tr>
+			  <td>Статутний капітал <button ng-click="founder = !founder" type="button" class="btn btn-link">
+						<i class="fa fa-angle-down" aria-hidden="true" ng-show="!founder"></i>
+						<i class="fa fa-angle-up" aria-hidden="true" ng-show="founder"></i>
+					</button></td>
+			  <td>{{data.oCommonInfoBot.totalcapital}}</td>
+			  <td>{{data.oCommonInfo.nSizeCharterCapital}}</td>
+			</tr>
+			<tr ng-repeat="benef in beneficiaries" ng-show="founder">
+			  <td>Засновники</td>
+			  <td>{{benef.title}}</td>
+			  <td>{{data.oCommonInfo.nSizeCharterCapital}}</td>
+			</tr>
+			<tr>
+			  <td>Місцезнаходження</td>
+			  <td>{{data.oCommonInfoBot.location}}</td>
+			  <td>{{data.oCommonInfo.Address}}</td>
+			</tr>
+			<tr>
+			  <td>Тимчасове місцезнаходження</td>
+			  <td></td>
+			  <td>{{data.oCommonInfo.Temporary_Address}}</td>
+			</tr>
+			<tr>
+			  <td>Адреса електронної пошти</td>
+			  <td></td>
+			  <td>{{data.oCommonInfo.Email}}</td>
+			</tr>
+			<tr>
+			  <td>Телефон</td>
+			  <td></td>
+			  <td>{{data.oCommonInfo.Phone}}</td>
+			</tr>
+			<tr>
+			  <td>Веб-сайт</td>
+			  <td></td>
+			  <td>{{data.oCommonInfo.www}}</td>
+			</tr>
+			<tr>
+			  <td>Дата державної реєстрації</td>
+			  <td></td>
+			  <td>{{data.oCommonInfo.sDateRegistrationEDR | dateFilter}}</td>
+			</tr>
+			<tr>
+			  <td>Статус юр.особи</td>
+			  <td>{{data.oCommonInfoBot.status}}</td>
+			  <td></td>
+			</tr>
+			<tr>
+			  <td>Основний КВЕД</td>
+			  <td>{{data.oCommonInfoBot.activities}}</td>
+			  <td></td>
+			</tr>
+			<tr>
+			  <td>Дата синхронізації даних</td>
+			  <td>{{data.oCommonInfoBot.database_date | dateFilter}}</td>
+			  <td></td>
+			</tr>
+					
+		  </tbody>
+		</table>
+		
+		<table class="table" ng-if="secondTable" style="background-color: #fcfffe">
+			<thead>
+			<tr>
+			  <th id="publ_prop">Публічні пропозиції</th>
+			  <td></td>
+			  <td></td>
+			  <td></td>
+			  <td></td>
+			  <td><button  type="button" class="btn btn-link" ng-click="doSecondQuery(); second = !second">
+						<i class="fa fa-angle-down fa-2x" style="color: black"></i>
+					</button></td>
+			</tr>
+			<tr ng-show="second" class="heder_tab2">
+			  <th ng-click="sortName()">Ім'я/назва особи, яка здійснює публічну пропозицію</th>
+			  <th ng-click="sortDateBeginPublic()">Дата початку публічної пропозиції</th>
+			  <th ng-click="sortDateEndPublic()">Дата закінчення публічної пропозиції</th>
+			  <th ng-click="sortStockPaper()">Цінні папери</th>
+			  <th ng-click="sortStatPos()">Статус пропозиції</th>
+			  <th></th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr ng-repeat="dataSecond in dataSeconds | orderBy: sort_name | orderBy: sort_stat_pos | orderBy: sort_stock_paper | orderBy: sort_begin_public | orderBy: sort_end_public" ng-show="second">
+			  <td>{{dataSecond.sNameOfferent.value}}</td>
+			  <td>{{dataSecond.sDateBeginPublicOffering.value | dateFilter}}</td>
+			  <td>{{dataSecond.sDateEndPublicOffering.value | dateFilter}}</td>
+			  <td>{{dataSecond.sTypeStockPaper.value}}</td>
+			  <td>{{dataSecond.aoListEvents.value.sName}} </td>
+			  <td><i class="fa fa-eye" style="color: #299cc2"></i></td>
+			</tr>
+		  </tbody>
+		</table>
+		</div>
+   </body>
+</html>

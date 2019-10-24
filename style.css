@@ -1,0 +1,79 @@
+		body {
+			font-size: 10pt;
+		}
+		
+		th#publ_prop {
+			font-size: 14pt;
+		}
+		
+		table {
+			outline: 1px solid #e8e8e8;
+			padding: 20px;
+			margin: 30px 0px;
+			box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+		}
+		
+		.heder_tab2 {
+			cursor: pointer;
+			background-color: #f7f7f7;
+		}
+		
+		td.without, th.without {
+    		border-bottom: 1px solid white ; 
+	   }
+	   
+		div.my_container {
+			padding: 20px 40px;
+			border-style: solid;
+			border-color: #f2f0f0;
+			border-width: 17px 7px;
+		}
+		
+		.layer1 {
+   			padding: 5px; 
+			float: left; 
+			width: 20%; 
+		   }
+		   
+		.layer2 {
+    		padding: 5px; 
+			width: 80%; 
+			float: left; 
+		   }
+		   
+		.layer2_1, .layer2_2 {
+			border: 1px solid black;
+			border-radius: 4px;
+			padding: 5px;
+			margin: 5px;
+		}
+		
+		.layer2_1 {
+			border-color: gray;
+			color: gray;
+		}
+		
+		.layer2_2 {
+			border-color: #299cc2;
+			color: #299cc2;
+		}
+		
+		.header {
+			background-color: #299cc2; 
+			color: white;
+			padding: 8px 25px;
+			font-size: 10pt;
+			height: 70px;
+		}
+		
+		.layer_hed1 {
+   			float: left; 
+			width: 60px; 
+		}
+		
+		.layer_hed2 {
+   			float: left; 
+			width: 130px; 
+			text-allign: center;
+		}
+		
